@@ -1,5 +1,8 @@
 /*
  * Device Tree overlay for rpi-display by Watterott
+ * Modified by Maxime André (removed the touch sensor, in order to save pins for other uses)
+ * Original code can be found here : 
+ * https://github.com/raspberrypi/linux/blob/rpi-5.4.y/arch/arm/boot/dts/overlays/rpi-display-overlay.dts
  *
  */
 
@@ -18,13 +21,6 @@
 
 	fragment@1 {
 		target = <&spidev0>;
-		__overlay__ {
-			status = "disabled";
-		};
-	};
-
-	fragment@2 {
-		target = <&spidev1>;
 		__overlay__ {
 			status = "disabled";
 		};
@@ -65,17 +61,6 @@
 				debug = <0>;
 			};
 
-			rpidisplay_ts: rpi-display-ts@1 {
-				compatible = "ti,ads7846";
-				reg = <1>;
-
-				spi-max-frequency = <2000000>;
-				interrupts = <25 2>; /* high-to-low edge triggered */
-				interrupt-parent = <&gpio>;
-				pendown-gpio = <&gpio 25 1>;
-				ti,x-plate-ohms = /bits/ 16 <60>;
-				ti,pressure-max = /bits/ 16 <255>;
-			};
 		};
 	};
 	__overrides__ {
@@ -83,8 +68,6 @@
 		rotate =    <&rpidisplay>,"rotate:0";
 		fps =       <&rpidisplay>,"fps:0";
 		debug =     <&rpidisplay>,"debug:0";
-		xohms =     <&rpidisplay_ts>,"ti,x-plate-ohms;0";
-		swapxy =    <&rpidisplay_ts>,"ti,swap-xy?";
 		backlight = <&rpidisplay>,"led-gpios:4",
 		            <&rpi_display_pins>,"brcm,pins:0";
 	};
