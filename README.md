@@ -43,5 +43,5 @@ Screen <---> Raspberry Pi
 
 # Original code
 
-The original code can be found here :
-(https://github.com/raspberrypi/linux/blob/rpi-5.4.y/arch/arm/boot/dts/overlays/rpi-display-overlay.dts)[https://github.com/raspberrypi/linux/blob/rpi-5.4.y/arch/arm/boot/dts/overlays/rpi-display-overlay.dts]
+The original code can be found here :  
+https://github.com/raspberrypi/linux/blob/rpi-5.4.y/arch/arm/boot/dts/overlays/rpi-display-overlay.dts
